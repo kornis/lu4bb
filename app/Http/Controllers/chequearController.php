@@ -9,26 +9,28 @@ use App\Respuesta;
 class chequearController extends Controller
 {
 
-	public function consulta($id = null)
+	public function consulta(Request $request)
 	{
-
-		//$pregunta_id = $_REQUEST['pid'];
-		//$respuesta_id = $_REQUEST['rid'];
-		//$pregunta = Pregunta::find($pregunta_id);
-		if($id == null)
+	
+		if($request->respuesta == null)
 		{
-			return "falso";
-		}
-		$respuesta = Respuesta::where('id',$id)->get();
-
-		if($respuesta == "verdadero")
-		{
-			return "verdadero";
+			return "no seleccionó pregunta";
 		}
 		else
 		{
-			return "falso";
+			foreach($request->respuesta as $id_respuesta)
+			{
+				$respuesta = Respuesta::find($id_respuesta);
+				
+				if($respuesta->valor == "falso")
+				{
+					return "falso";
+					break;
+				}
+			}
+			return "verdadero";
 		}
+		
 	}
 	
 }

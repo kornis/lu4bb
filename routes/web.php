@@ -23,4 +23,4 @@ Route::group(['prefix' =>'admin'] ,function(){
 Route::get('/cuestionario/{reiniciar?}','frontController@cuestionario'
 )->name('cuestionario');
 
-Route::get('/consultar/{id}','chequearController@consulta')->name('consultar');
+Route::post('/consultar','chequearController@consulta')->name('consultar');

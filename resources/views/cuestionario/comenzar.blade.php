@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<title>Cuestionario</title>
 </head>
 <body>
@@ -8,30 +9,31 @@
 		<div class="card-header">
 			Preguntas - Contador: {{$contador}} - Respuestas correctas: <span id="resp"> </span>
 		</div>
-		<div class="card-body">
-			{{ csrf_field() }}
-			<div>
-				{{ $pregunta->preguntas }}
-			</div>
-			<table>
-				<tr>
-					<th>Respuesta</th>
-					<th>Opcion Correcta</th>
-				</tr>
-			@foreach ($respuestas as $resp)
-				<tr>
-					<td>{{ $resp->respuestas }}</td>
-					<td><input type="radio" name='{{$resp->id}}' class="rcheck"></td>
-				</tr>
-			@endforeach
-		</table>
-		</div>
-			{{ session()->put('count',$contador) }}
-			<a href="{{ route('cuestionario') }}">Siguiente Pregunta</a>
-			<a href="{{ route('cuestionario','reiniciar') }}" >Reiniciar Contador</a>
-			<button onclick="gp.validar()">Validar</button>
+
+			
 			
 	</div>
+		<div class="col-md-6">
+		<div class="card">
+			<input type="text" name="pregunta" value="{{$pregunta->preguntas}}">
+			<form method="post" action="">
+				{{ csrf_field() }}
+				@foreach ($respuestas as $resp)
+				<div class="form-group">
+					<label for="respuesta">Respuesta</label>
+					<input type="text" class="form-control" name="respuesta" value="{{ $resp->respuestas }}">
+					<input type="checkbox" class="rcheck" name="{{ $resp->id }}">
+				</div>
+				@endforeach
+				
+			</form>
+		</div>
+					{{ session()->put('count',$contador) }}
+			<a href="{{ route('cuestionario') }}">Siguiente Pregunta</a>
+			<a href="{{ route('cuestionario','reiniciar') }}" >Reiniciar Contador</a>
+		<button onclick="gp.validar()">Validar</button>
+	</div>
+
 
 	<script>
 

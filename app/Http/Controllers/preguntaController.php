@@ -22,6 +22,7 @@ class preguntaController extends Controller
     {
     	$pregunta = new Pregunta();
     	$pregunta->preguntas= $request->pregunta;
+    	$pregunta->tipo =$request->type_option;
     	$pregunta->save();
     	
     	if($request->respuesta1)
@@ -30,6 +31,7 @@ class preguntaController extends Controller
     		$respuesta1->respuestas = $request->respuesta1;
     		$respuesta1->pregunta_id = $pregunta->id; 
     		$respuesta1->valor = $request->type1; 
+    		$respuesta1->tipo = $request->type_option;
     		$respuesta1->save();   		
     	}
     	
@@ -39,6 +41,7 @@ class preguntaController extends Controller
     		$respuesta2->respuestas = $request->respuesta2;
     		$respuesta2->pregunta_id = $pregunta->id;
     		$respuesta2->valor = $request->type2;
+    		$respuesta1->tipo = $request->type_option;
     		$respuesta2->save();	
     	}
 
@@ -48,6 +51,7 @@ class preguntaController extends Controller
     		$respuesta3->respuestas = $request->respuesta3;
     		$respuesta3->pregunta_id = $pregunta->id;
     		$respuesta3->valor = $request->type3;
+    		$respuesta1->tipo = $request->type_option;
     		$respuesta3->save();
     	}
     	
@@ -57,6 +61,7 @@ class preguntaController extends Controller
     		$respuesta4->respuestas = $request->respuesta4;
     		$respuesta4->pregunta_id = $pregunta->id;
     		$respuesta4->valor = $request->type4;
+    		$respuesta1->tipo = $request->type_option;
     		$respuesta4->save();
     	}
     	

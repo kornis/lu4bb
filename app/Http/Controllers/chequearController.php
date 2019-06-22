@@ -11,7 +11,6 @@ class chequearController extends Controller
 
 	public function consulta(Request $request)
 	{
-	
 		if($request->respuesta == null)
 		{
 			return "no seleccionó pregunta";
@@ -24,7 +23,13 @@ class chequearController extends Controller
 				
 				if($respuesta->valor == "falso")
 				{
-					return "falso";
+					$valores = Respuesta::where('pregunta_id',$respuesta->pregunta_id)->get();
+					
+					session(['incorrectas' => session('incorrectas')+1]);
+					$valor = session('incorrectas');
+					$valores[] = array('incorrecta'=>$valor);
+					$json_respuestas = json_encode($valores);
+					return $json_respuestas;
 					break;
 				}
 			}
@@ -34,3 +39,12 @@ class chequearController extends Controller
 	}
 	
 }
+
+
+				/*$consulta = Respuesta::find($id_respuesta);
+				$respuestas = Respuesta::where('pregunta_id',$consulta->pregunta_id);
+				dd($respuestas);
+				$valores = array(
+					array($respuesta->id => $respuesta->valor),
+					array()*/
+

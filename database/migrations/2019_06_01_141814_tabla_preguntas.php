@@ -15,8 +15,8 @@ class TablaPreguntas extends Migration
     {
         Schema::create('preguntas',function(Blueprint $table){
             $table->increments('id');
-            $table->string('tipo');
             $table->text('preguntas');
+            $table->enum('tipo',['tecnica','teorico'])->default('tecnica');
             $table->timestamps();
         });
     }

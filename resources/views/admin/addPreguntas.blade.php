@@ -13,7 +13,12 @@
 		<div class="form-group">
 			<label for="pregunta">Ingrese nueva Pregunta</label>
 			<input class="form-control" type="text" name="pregunta">
+			<select name="type_option">
+			<option value="Tecnica">Tecnica</option>
+			<option value="Teorico">Teorico</option>
+		</select>
 		</div>
+
 		<div class="form-group">
 			<label for="respuesta1">Ingrese Respuesta 1</label>
 			<input class="form-control" type="text" name="respuesta1">

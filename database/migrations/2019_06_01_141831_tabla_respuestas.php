@@ -18,6 +18,7 @@ class TablaRespuestas extends Migration
             $table->text('respuestas');
             $table->enum('valor',['verdadero','falso'])->default('falso');
             $table->integer('pregunta_id')->unsigned();
+            $table->enum('tipo',['tecnica','teorico'])->default('tecnica');
             $table->foreign('pregunta_id')->references('id')->on('preguntas')->onDelete('cascade');
             $table->timestamps();
         });

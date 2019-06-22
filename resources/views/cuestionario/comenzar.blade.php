@@ -7,7 +7,8 @@
 <body>
 	<div class="card">
 		<div class="card-header">
-			Preguntas - Contador: {{$contador}} - Respuestas correctas: <span id="resp"> </span>
+			Preguntas - Contador: {{$contador}} - Respuestas correctas: <span id="resp">{{$incorrectas
+			}} </span>
 		</div>
 
 			
@@ -19,7 +20,7 @@
 			<form method="post" id="form" action="{{ route('consultar') }}">
 				{{ csrf_field() }}
 				@foreach ($respuestas as $resp)
-				<div class="form-group">
+				<div class="form-group" id="{{$resp->id}}">
 					<label for="respuesta">Respuesta</label>
 					<input type="text" class="form-control" name="" value="{{ $resp->respuestas }}">
 					<input type="checkbox" class="rcheck" name="respuesta[{{ $resp->id }}]" value="{{ $resp->id }}">
@@ -31,7 +32,7 @@
 					{{ session()->put('count',$contador) }}
 			<a href="{{ route('cuestionario') }}">Siguiente Pregunta</a>
 			<a href="{{ route('cuestionario','reiniciar') }}" >Reiniciar Contador</a>
-		<button onclick="gp.validar()">Validar</button>
+		<button id="validate" onclick="gp.validar()">Validar</button>
 	</div>
 
 
@@ -40,7 +41,8 @@
 		var mp = 
 		{
 			respuestas: document.querySelectorAll('.rcheck'),
-			val:""
+			val:"",
+			clicked:""
 		}
 		
 
@@ -55,12 +57,12 @@
 				}
 			},
 
-			chequear: function(radio){
+			chequear: function(check){
 				
-			if(radio.target.checked == true)
+			if(check.target.checked == true)
 			{
-				mp.val = radio.target.name;
-				
+				mp.val = check.target.value;
+				mp.clicked = check.target;
 			}
 			},
 
@@ -69,30 +71,58 @@
 				/*var url = '{{ url("/consultar", ":id") }}';
 					url = url.replace('%3Aid', mp.val);*/
 					var url = document.getElementById('form')
-					
 					var token = document.getElementsByName('_token');
-					console.log(token[0].value);
+
+					
 				var xmlhttp = new XMLHttpRequest();
 
 
 				xmlhttp.onreadystatechange = function()
 				{
-					console.log(xmlhttp.response);
+					
 					if (this.readyState == 4 && this.status == 200) 
-					{
+					{					
 
-												
-						if (xmlhttp.response == "falso")
+						if (xmlhttp.response == "verdadero")
 						{
-							document.getElementById("resp").innerHTML = "1";
+							mp.clicked.parentNode.style.backgroundColor = 'green';
+							document.getElementById("validate").disabled = true;
+						}
+						else if(xmlhttp.response == 'no seleccionó pregunta')
+						{
+							alert("No seleccionó ninguna respuesta...!");
+						}
+						else
+						{
+							var myObj = JSON.parse(this.responseText);
+							
+							for(var i = 0; i<myObj.length; i++)
+							{
+								if(myObj[i].valor == "falso")
+							{
+								document.getElementById(myObj[i].id).style.backgroundColor = 'red';
+							}
+							else if(myObj[i].valor == "verdadero")
+							{
+								document.getElementById(myObj[i].id).style.backgroundColor = 'green';
+							}
+							else
+							{
+								var incorrectas = myObj[i].incorrecta;
+							}
+							}
+							
+							document.getElementById("validate").disabled = true;
+							document.getElementById("resp").innerHTML = incorrectas;
 						}
 						
 					}
+					
 				}
 
 				xmlhttp.open("post",url.action);
 				xmlhttp.setRequestHeader('x-csrf-token', token[0].value);
-				xmlhttp.send();
+				xmlhttp.send(new FormData(url));
 			}
 
 

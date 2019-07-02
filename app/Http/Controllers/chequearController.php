@@ -11,6 +11,8 @@ class chequearController extends Controller
 
 	public function consulta(Request $request)
 	{
+
+
 		if($request->respuesta == null)
 		{
 			return "no seleccionó pregunta";
@@ -41,10 +43,4 @@ class chequearController extends Controller
 }
 
 
-				/*$consulta = Respuesta::find($id_respuesta);
-				$respuestas = Respuesta::where('pregunta_id',$consulta->pregunta_id);
-				dd($respuestas);
-				$valores = array(
-					array($respuesta->id => $respuesta->valor),
-					array()*/
 

@@ -111,7 +111,8 @@ ul.footer-ul>li:hover
 
 .dropdw1 a:hover
 {
-	background-color: red;
+  background-color: #555;
+  color: white;
 }
 
 .dropdown

@@ -11,8 +11,9 @@
 	<div class="col-md-12">
 	<div class="card">
 		<div class="card-header">
-			Preguntas - Contador: {{$contador}} - Respuestas correctas: <span id="resp">{{$incorrectas
-			}} </span>
+			Preguntas - Contador: {{$contador}} - Respuestas incorrectas: <span id="resp">{{$incorrectas
+			}} </span>  - Respuestas correctas: <span id="correct">{{session('correctas')
+			}} </span> 
 		</div>
 	</div>	
 	</div>

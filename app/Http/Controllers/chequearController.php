@@ -15,7 +15,9 @@ class chequearController extends Controller
 
 		if($request->respuesta == null)
 		{
-			return "no seleccionó pregunta";
+			$valores['datos'] = array('respuesta'=>'No seleccionó pregunta...');
+			$json_respuestas = json_encode($valores);
+			return $json_respuestas;
 		}
 		else
 		{
@@ -25,17 +27,21 @@ class chequearController extends Controller
 				
 				if($respuesta->valor == "falso")
 				{
-					$valores = Respuesta::where('pregunta_id',$respuesta->pregunta_id)->get();
-					
 					session(['incorrectas' => session('incorrectas')+1]);
+
+					$valores = Respuesta::where('pregunta_id',$respuesta->pregunta_id)->get();
 					$valor = session('incorrectas');
-					$valores[] = array('incorrecta'=>$valor);
+					$valores["datos"] = array('respuesta' => 'falso','incorrectas' => $valor);
 					$json_respuestas = json_encode($valores);
 					return $json_respuestas;
 					break;
 				}
 			}
-			return "verdadero";
+			session(['correctas' => session('correctas')+1]);
+			$cantCorrectas = session('correctas');
+			$valores['datos'] = array('respuesta'=>"verdadero",'correctas'=>$cantCorrectas);
+			$json_respuestas = json_encode($valores);
+			return $json_respuestas;
 		}
 		
 	}

@@ -59,11 +59,52 @@
 					if (this.readyState == 4 && this.status == 200) 
 					{					
 
-						if (xmlhttp.response == "verdadero")
+						var myObj = JSON.parse(this.responseText);
+
+							switch(myObj['datos'].respuesta)
+							{
+							case "verdadero":
+							mp.clicked.style.color="white";
+							mp.clicked.style.backgroundColor = 'green';
+							document.getElementById("validate").disabled = true;
+							document.querySelector('.nextt').disabled = false;
+							break;
+
+							case "falso":
+
+							for(var i = 0; i<Object.keys(myObj).length-1; i++)
+							{
+								
+								if(myObj[i].valor == "falso")
+							{
+								document.getElementById(myObj[i].id).style.color = 'white';
+								document.getElementById(myObj[i].id).style.backgroundColor = 'red';
+							}
+							if(myObj[i].valor == "verdadero")
+							{
+								document.getElementById(myObj[i].id).style.color = 'white';
+								document.getElementById(myObj[i].id).style.backgroundColor = 'green';
+							}
+							}
+							var incorrectas = myObj['datos'].incorrectas;
+							document.querySelector('.nextt').disabled = false;
+							document.getElementById("validate").disabled = true;
+							document.getElementById("resp").innerHTML = incorrectas;
+
+							break;
+
+							default:
+							alert(myObj['datos'].respuesta);
+							break;
+
+						}
+						/*
+						if (myObj['datos'].respuesta == "verdadero")
 						{
 							mp.clicked.style.color="white";
 							mp.clicked.style.backgroundColor = 'green';
 							document.getElementById("validate").disabled = true;
+							document.querySelector('.nextt').disabled = false;
 						}
 						else if(xmlhttp.response == 'no seleccionó pregunta')
 						{
@@ -71,7 +112,6 @@
 						}
 						else
 						{
-							var myObj = JSON.parse(this.responseText);
 							
 							for(var i = 0; i<myObj.length; i++)
 							{
@@ -80,21 +120,17 @@
 								document.getElementById(myObj[i].id).style.color = 'white';
 								document.getElementById(myObj[i].id).style.backgroundColor = 'red';
 							}
-							else if(myObj[i].valor == "verdadero")
+							if(myObj[i].valor == "verdadero")
 							{
 								document.getElementById(myObj[i].id).style.color = 'white';
 								document.getElementById(myObj[i].id).style.backgroundColor = 'green';
 							}
-							else
-							{
-								var incorrectas = myObj[i].incorrecta;
 							}
-							}
-							
+							var incorrectas = myObj['datos'].incorrectas;
 							document.querySelector('.nextt').disabled = false;
 							document.getElementById("validate").disabled = true;
 							document.getElementById("resp").innerHTML = incorrectas;
-						}
+						}*/
 						
 					}
 					

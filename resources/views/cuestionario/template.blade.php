@@ -20,15 +20,15 @@
 			<div class="menu-nav">
 				<a href="">INICIO</a>
 				<a href="">BLOG</a>
+				<a href="">EL CLUB</a>
 				<div class="dropdown">
-					<button class="dropdownbutton">EL CLUB</button>
+					<button class="dropdownbutton">HERRAMIENTAS</button>
 					<div class="dropdw1">
-					<a href="">menu1</a>
+					<a href="">ADMINISTRAR PREGUNTAS</a>
 					<a href="">menu2</a>
 					<a href="">menu3</a>
 				</div>
 				</div>
-				<a href="">HERRAMIENTAS</a>
 			</div>
 		</div>
 		</div>

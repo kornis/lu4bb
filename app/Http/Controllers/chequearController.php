@@ -11,7 +11,7 @@ class chequearController extends Controller
 
 	public function consulta(Request $request)
 	{
-
+		$elId;
 
 		if($request->respuesta == null)
 		{
@@ -23,6 +23,7 @@ class chequearController extends Controller
 		{
 			foreach($request->respuesta as $id_respuesta)
 			{
+				$elId = $id_respuesta;
 				$respuesta = Respuesta::find($id_respuesta);
 				
 				if($respuesta->valor == "falso")
@@ -39,7 +40,7 @@ class chequearController extends Controller
 			}
 			session(['correctas' => session('correctas')+1]);
 			$cantCorrectas = session('correctas');
-			$valores['datos'] = array('respuesta'=>"verdadero",'correctas'=>$cantCorrectas);
+			$valores['datos'] = array('respuesta'=>"verdadero",'correctas'=>$cantCorrectas,'id_pregunta'=>$elId);
 			$json_respuestas = json_encode($valores);
 			return $json_respuestas;
 		}

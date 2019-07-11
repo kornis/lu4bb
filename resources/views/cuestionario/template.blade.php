@@ -35,11 +35,13 @@
 	</div>
 </div>
 
-<!-- @include("cuestionario.partials.nav") -->
 
 
 @yield('body')
 
 @include('cuestionario.partials.footer')
+
+<script type="text/javascript" src="{{ asset('js/validar.js') }}"></script>
+
 </body>
 </html>

@@ -11,11 +11,11 @@
 		{
 			inicio: function()
 			{
-				for(var i = 0; i < mp.respuestas.length; i++)
+				/*for(var i = 0; i < mp.respuestas.length; i++)
 				{
 		 			mp.respuestas[i].addEventListener("click", gp.chequear);
 		 			
-				}
+				}*/
 				for(var a = 0; a < mp.content.length; a++)
 				{
 					mp.content[a].addEventListener("click", gp.chequear2);
@@ -28,6 +28,7 @@
 			{
 				mp.clicked = clicked.target;
 				var id = clicked.target.id;
+
 				var hiddenClicked = document.getElementById("respuesta["+id+"]");
 				
 				clicked.target.classList.toggle("alert-secondary");
@@ -60,12 +61,12 @@
 					{					
 
 						var myObj = JSON.parse(this.responseText);
-
+							
 							switch(myObj['datos'].respuesta)
 							{
 							case "verdadero":
-							mp.clicked.style.color="white";
-							mp.clicked.style.backgroundColor = 'green';
+							document.getElementById(myObj['datos'].id_pregunta).style.color = 'white';
+							document.getElementById(myObj['datos'].id_pregunta).style.backgroundColor = 'green';							
 							document.getElementById("validate").disabled = true;
 							document.querySelector('.nextt').disabled = false;
 							break;

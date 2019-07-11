@@ -3,8 +3,7 @@
 
 
 @section('body')
-
-<div class="container">
+<div class="container contBody" id="contBody">
 
 
 <div class="row">
@@ -59,7 +58,6 @@
 	
 
 
-	<script type="text/javascript" src="{{ asset('js/validar.js') }}"></script>
+	@endsection
 	
 	
-@endsection

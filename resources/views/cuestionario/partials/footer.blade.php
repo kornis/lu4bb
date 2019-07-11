@@ -1,3 +1,4 @@
+
 <div class="container-fluid footer">
 	<div class="row footer-cont">
 			<div class="col text-justify">
@@ -43,7 +44,7 @@
 				<strong>Miércoles de 21:00 a 23:45</strong>
 				<br>
 				<strong>Viernes de 21:00 a 23:45</strong>
-			<p>
+			</p>
 			</div>
 	</div>
 </div>

@@ -11,11 +11,6 @@
 		{
 			inicio: function()
 			{
-				/*for(var i = 0; i < mp.respuestas.length; i++)
-				{
-		 			mp.respuestas[i].addEventListener("click", gp.chequear);
-		 			
-				}*/
 				for(var a = 0; a < mp.content.length; a++)
 				{
 					mp.content[a].addEventListener("click", gp.chequear2);
@@ -99,39 +94,6 @@
 							break;
 
 						}
-						/*
-						if (myObj['datos'].respuesta == "verdadero")
-						{
-							mp.clicked.style.color="white";
-							mp.clicked.style.backgroundColor = 'green';
-							document.getElementById("validate").disabled = true;
-							document.querySelector('.nextt').disabled = false;
-						}
-						else if(xmlhttp.response == 'no seleccionó pregunta')
-						{
-							alert("No seleccionó ninguna respuesta...!");
-						}
-						else
-						{
-							
-							for(var i = 0; i<myObj.length; i++)
-							{
-								if(myObj[i].valor == "falso")
-							{
-								document.getElementById(myObj[i].id).style.color = 'white';
-								document.getElementById(myObj[i].id).style.backgroundColor = 'red';
-							}
-							if(myObj[i].valor == "verdadero")
-							{
-								document.getElementById(myObj[i].id).style.color = 'white';
-								document.getElementById(myObj[i].id).style.backgroundColor = 'green';
-							}
-							}
-							var incorrectas = myObj['datos'].incorrectas;
-							document.querySelector('.nextt').disabled = false;
-							document.getElementById("validate").disabled = true;
-							document.getElementById("resp").innerHTML = incorrectas;
-						}*/
 						
 					}
 					

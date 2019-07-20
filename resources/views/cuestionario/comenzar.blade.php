@@ -3,6 +3,7 @@
 
 
 @section('body')
+
 <div class="container contBody" id="contBody">
 
 

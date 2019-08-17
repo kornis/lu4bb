@@ -24,13 +24,13 @@
 			<div class="col-md-6 col-xs-6" style="margin: auto">
 			<div class="menu">
 			<div class="menu-nav">
-				<a href="">INICIO</a>
-				<a href="">BLOG</a>
-				<a href="">EL CLUB</a>
+				<a href="{{ route('index') }}">INICIO</a>
+				<a href="https://lu4bb.com/blogs">BLOG</a>
+				<a href="https://lu4bb.com/el-club">EL CLUB</a>
 				<div class="dropdown">
 					<button class="dropdownbutton">HERRAMIENTAS</button>
 					<div class="dropdw1">
-					<a href="">ADMINISTRAR PREGUNTAS</a>
+					<a href="{{ route('crear_pregunta.index') }}">ADMINISTRAR PREGUNTAS</a>
 					<a href="">menu2</a>
 					<a href="">menu3</a>
 				</div>

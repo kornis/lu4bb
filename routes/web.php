@@ -11,9 +11,11 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('cuestionario.index');
-});
+})->name('index');
 
 Route::group(['prefix' =>'admin'] ,function(){
 
